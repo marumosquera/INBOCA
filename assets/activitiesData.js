@@ -5,7 +5,7 @@ export const activitiesData = [
       description: "Descubre el icónico Obelisco y recorre la avenida más ancha del mundo, rodeada de imponentes edificios y plazas.",
       duration: "1.5 horas",
       location: "Obelisco y Avenida 9 de Julio",
-      image: "URL_de_la_imagen",
+      image: "malba.jpeg",
       audioGuide: "URL_del_audio",
       transcription: "Transcripción del contenido del audio...",
       pointsOfInterest: ["Obelisco", "Teatro Colón", "Plaza de la República"],

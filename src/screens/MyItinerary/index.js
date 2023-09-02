@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
-import { CategoriesListContainer } from "../../components/CategoriesListContainer";
+import { Text, View, StyleSheet } from "react-native";
+import  CategoriesListContainer  from "../../components/CategoriesListContainer";
 import { categories } from "../../../assets/categories";
 import { activitiesData } from "../../../assets/activitiesData";
 import { ActivitiesListContainer } from "../../components/ActivitiesListContainer";
@@ -31,11 +31,11 @@ const MyItinerary = () => {
   };
 
   return (
-    <View>
-      <Text>Crear mi itinerario</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Crear mi itinerario</Text>
       <CategoriesListContainer data={categories} />
       <ActivitiesListContainer data={activities} selectActivity={addNewActivityToItinerary}/>
-      <Text>My itinerario</Text>
+      <Text style={styles.title}>My itinerario</Text>
       <ItineraryContainer data={itineraryActivities} selectActivity={confirmDeletionActivity}/>
       <ModalConfirmation
         modalVisible={modalVisible}
@@ -47,4 +47,16 @@ const MyItinerary = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 10,
+  },
+});
+
 export default MyItinerary;
+

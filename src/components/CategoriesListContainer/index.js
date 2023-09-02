@@ -1,11 +1,11 @@
 import React from "react";
-import { FlatList, ScrollView, View } from "react-native";
-import { CategoryItem } from "../CategoryItem";
-import styles from "./styles";
+import { FlatList, ScrollView, View, StyleSheet } from "react-native";
+import  CategoryItem  from "../CategoryItem";
 
-export const CategoriesListContainer = ({ data }) => {
+
+const CategoriesListContainer = ({ data }) => {
   return (
-    <View >
+    <View style={styles.container}>
       <ScrollView>
         <FlatList
           data={data}
@@ -17,3 +17,12 @@ export const CategoriesListContainer = ({ data }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row", // Cambio de flexDirection a "row" para alinear horizontalmente
+    paddingHorizontal: 10, // Espacio horizontal entre los elementos
+  },
+});
+
+export default CategoriesListContainer;
