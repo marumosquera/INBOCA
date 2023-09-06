@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     color: 'white', // Letras blancas
     textTransform: 'uppercase', // Letras en mayúsculas
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 12,
   },
 });
 

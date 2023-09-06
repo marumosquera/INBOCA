@@ -1,55 +1,39 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
+  blur: {
+    flex: 1,
+    justifyContent: "center",
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
   },
   modalView: {
-    margin: 20,
-    backgroundColor: "white",
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
     borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    padding: 35
   },
   button: {
+    flexDirection: "row",
     borderRadius: 20,
     padding: 10,
-    elevation: 2,
-  },
-  buttonClose: {
-    backgroundColor: "darkred",
+    marginTop: 10,
   },
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center",
+    textAlign: "left",
+    marginLeft:10
   },
   modalTextTitle: {
     fontWeight: "700",
     fontSize: 18,
     textAlign: "center",
-  },
-  modalText: {
-    fontSize: 16,
-    marginBottom: 15,
-    textAlign: "center",
-    marginVertical: 20,
+    color: "white",
   },
   containerButtons: {
-    flexDirection: "row",
-    gap: 20,
+    alignItems: "center",
+    marginTop: 20,
   },
 });
-
-export default styles;

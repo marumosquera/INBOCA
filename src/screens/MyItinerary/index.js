@@ -15,8 +15,22 @@ const MyItinerary = () => {
   const [itineraryActivities, setItineraryActivities] = useState([])
 
   const addNewActivityToItinerary = (item) => {
-    setItineraryActivities([...itineraryActivities.filter((activity)=> activity !== item), ...[item]])
-  }; 
+    setItineraryActivities([...itineraryActivities, { ...item, completed: false }]);
+  };
+
+
+  const onConfirmCompletition = (item) => {
+    const updatedActivities = itineraryActivities.map((activity) => {
+      if (activity.id === item.id) {
+        return { ...activity, completed: true };
+      } else {
+        return activity;
+      }
+    });
+    setItineraryActivities(updatedActivities);
+    setModalVisible(false);
+    setSelectedItineraryActivity(null);
+  };
 
   const onConfirmDeletion = (id) => {
     const filteredActivities = itineraryActivities.filter((item) => item.id !== id);
@@ -25,7 +39,7 @@ const MyItinerary = () => {
     setSelectedItineraryActivity(null);
   };
 
-  const confirmDeletionActivity = (item) => {
+  const viewActionsOnActivity = (item) => {
     setSelectedItineraryActivity(item);
     setModalVisible(true);
   };
@@ -36,12 +50,13 @@ const MyItinerary = () => {
       <CategoriesListContainer data={categories} />
       <ActivitiesListContainer data={activities} selectActivity={addNewActivityToItinerary}/>
       <Text style={styles.title}>My itinerario</Text>
-      <ItineraryContainer data={itineraryActivities} selectActivity={confirmDeletionActivity}/>
+      <ItineraryContainer data={itineraryActivities} selectActivity={viewActionsOnActivity}/>
       <ModalConfirmation
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         selectedActivity={selectedItineraryActivity}
         onConfirmDeletion={onConfirmDeletion}
+        onConfirmCompletition={onConfirmCompletition}
       />
     </View>
   );
@@ -49,12 +64,14 @@ const MyItinerary = () => {
 
 const styles = StyleSheet.create({
   container: {
-
+    backgroundColor: "black",
     padding: 20,
+    height: "100%"
   },
   title: {
     fontSize: 24,
-    marginBottom: 10,
+    margin: 10,
+    color: "white"
   },
 });
 
