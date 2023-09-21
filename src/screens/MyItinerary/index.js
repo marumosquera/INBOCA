@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
     padding: 20,
-    height: "100%"
+    height: "100%",
+    fontFamily: "LexendRegular"
   },
   title: {
     fontSize: 24,
