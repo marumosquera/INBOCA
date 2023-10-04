@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import MyItinerary from '../MyItinerary'
+
 
 const Itinerary = () => {
   return (
     <View style={styles.container}>
-      <MyItinerary/>
+ 
     </View>
   )
 }

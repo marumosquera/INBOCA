@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { SearchBar } from "../../components/SearchBar";
-import { ActivitiesListContainerHome } from "../../components/ActivitiesListContainerHome";
+import  SearchBar  from "../../components/SearchBar";
+import { ActivitiesListContainer } from "../../components/ActivitiesListContainer";
 import { categories } from "../../../assets/categories";
 import { activitiesData } from "../../../assets/activitiesData";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -53,7 +53,7 @@ const Favorites = ({ navigation }) => {
       <View style={styles.container}>
         <Text style={styles.title}>Favoritos</Text>
         <SearchBar setActivites={setActivites} />
-        <ActivitiesListContainerHome
+        <ActivitiesListContainer
           data={activities}
           selectActivity={addNewActivityToFavorite}
           navigation={navigation}

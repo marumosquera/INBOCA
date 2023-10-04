@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { SearchBar } from "../../components/SearchBar";
-import { ActivitiesListContainerHome } from "../../components/ActivitiesListContainerHome";
+import SearchBar  from "../../components/SearchBar";
+import { ActivitiesListContainer } from "../../components/ActivitiesListContainer";
 import { categories } from "../../../assets/categories";
 import { activitiesData } from "../../../assets/activitiesData";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CategoriesListContainer from "../../components/CategoriesListContainer";
 
 const Home = ({ navigation }) => {
   const [activites, setActivites] = useState([]);
@@ -14,6 +15,7 @@ const Home = ({ navigation }) => {
     useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [favoriteActivities, setFavoriteActivities] = useState([]);
+  const [filteredInfo, setFilteredInfo] = useState({})
 
   const addNewActivityToFavorite = (item) => {
     setFavoriteActivities([
@@ -48,13 +50,29 @@ const Home = ({ navigation }) => {
     setSelectedFavoriteActivity(item);
     setModalVisible(true);
   };
+
+
+  const handleSearch = (searchTerm) => {
+    const lowercaseInput = searchTerm.toLowerCase();
+    if (lowercaseInput === "") {
+      setFilteredInfo(activities);
+    } else {
+      const filteredInfo = activities.filter((info) =>
+        info.title.toLocaleLowerCase().includes(lowercaseInput)
+      );
+      setFilteredInfo(filteredInfo);
+    }
+  };
+
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.title}>Bienvenido, Juan!</Text>
-        <SearchBar setActivites={setActivites} />
-        <ActivitiesListContainerHome
-          data={activities}
+        <Text style={styles.title}>Bienvenido, <Text style={styles.name}>Juan </Text>!</Text>
+        <SearchBar onSearch={handleSearch}/>
+        <CategoriesListContainer data={categories}/>
+        <ActivitiesListContainer
+          data={filteredInfo}
           selectActivity={addNewActivityToFavorite}
           navigation={navigation}
         />
@@ -65,13 +83,24 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "black",
+    backgroundColor: "#1C1C1C",
     padding: 20,
     height: "100%",
     fontFamily: "LexendRegular",
   },
   title:{
-    color: "white",
+    color:"#FFF",
+    fontSize: 28,
+    marginLeft: 20,
+    marginTop: 15,
+    fontStyle: "normal",
+    fontWeight: "300",
+  },
+  name:{
+    color:"#FFF",
+    fontSize: 28,
+    fontStyle: "normal",
+    fontWeight: "500",
   }
 });
 

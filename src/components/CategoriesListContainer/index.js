@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row", // Cambio de flexDirection a "row" para alinear horizontalmente
     paddingHorizontal: 10, // Espacio horizontal entre los elementos
+    marginTop: 10,
+    marginBottom: 10,
   },
 });
 

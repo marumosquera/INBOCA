@@ -1,20 +1,38 @@
 import React from "react";
-import { FlatList, ScrollView, Text, View } from "react-native";
-import { ActivityItem } from "../ActivityItem";
-import styles from "./styles";
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  View,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
+import { ActivityItem} from "../ActivityItem";
 
-export const ActivitiesListContainer = ({ data, selectActivity }) => {
+const windowWidth = Dimensions.get("window").width;
 
+export const ActivitiesListContainer = ({ data, selectActivity, navigation }) => {
   return (
-    <View>
+
+      <>
         <FlatList
           data={data}
-          renderItem={({ item }) => <ActivityItem activity={item} selectActivity={selectActivity}/>}
-          keyExtractor={item => item.id}
-          style={styles.containerItem}
-          horizontal
+          renderItem={({ item }) => (
+            <ActivityItem activity={item} selectActivity={selectActivity} navigation={navigation} />
+          )}
+          keyExtractor={(item) => item.id}
+        
         />
-    
-    </View>
+      </>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical: 50,
+    paddingHorizontal: 10,
+    rowGap: 20,
+    height: "100%",
+    backgroundColor: "black",
+  },
+});

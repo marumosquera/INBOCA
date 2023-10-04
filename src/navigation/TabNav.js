@@ -67,7 +67,7 @@ const TabNav = () => {
         name="Itinerary"
         component={Itinerary}
         options={{
-          tabBarLabel: "Itinerario",
+          tabBarLabel: "Itinerarios",
           tabBarIcon: ({ focused }) => (
             <FontAwesome
               name={focused ? "map" : "map-o"}
