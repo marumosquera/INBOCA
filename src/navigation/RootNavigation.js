@@ -8,6 +8,7 @@ import Itinerary from "../screens/Itinerary";
 import ItineraryDetail from "../screens/ItineraryDetail";
 import ActivityDetail from "../screens/ActivityDetail";
 import Profile from "../screens/Profile";
+import Map from "../screens/Map";
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
@@ -21,6 +22,7 @@ const Navigator = () => {
         
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="Inboca" component={Home} />
+        <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="Favorites" component={Favorites} />
         <Stack.Screen name="Itinerary" component={Itinerary} />
         <Stack.Screen name="ItineraryDetail" component={ItineraryDetail} />

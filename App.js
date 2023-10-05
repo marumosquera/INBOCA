@@ -10,7 +10,7 @@ import { store } from "./src/redux/store";
 
 export default function App() {
   const [fontsLoaded] = useFonts(FONTS);
-  const [isAudioPlaying, setIsAudioPlaying] = useState(true); 
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false); 
   if (!fontsLoaded) {
     return null;
   }

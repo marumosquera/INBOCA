@@ -8,16 +8,14 @@ const AudioPlayer = ({ audioUrl }) => {
   const [audioDuration, setAudioDuration] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(0);
 
-  const activitySelected = useSelector((state) => state.audioSlice.activitySelected);
 
   const togglePlayback = () => {
     setIsPlaying(!isPlaying);
   };
-  console.log("redux", activitySelected)
   return (
     <View style={styles.container}>
       <View style={styles.audioInfo}>
-        <Text style={styles.audioTitle}>{activitySelected?.title}</Text>
+        <Text style={styles.audioTitle}></Text>
         <Text style={styles.audioTime}>
           {formatTime(currentPosition)} / {formatTime(audioDuration)}
         </Text>
