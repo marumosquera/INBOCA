@@ -14,6 +14,7 @@ const Favorites = ({ navigation }) => {
     useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [favoriteActivities, setFavoriteActivities] = useState([]);
+  const [filteredInfo, setFilteredInfo] = useState({})
 
   const addNewActivityToFavorite = (item) => {
     setFavoriteActivities([
@@ -48,13 +49,27 @@ const Favorites = ({ navigation }) => {
     setSelectedFavoriteActivity(item);
     setModalVisible(true);
   };
+
+  const handleSearch = (searchTerm) => {
+    const lowercaseInput = searchTerm.toLowerCase();
+    if (lowercaseInput === "") {
+      setFilteredInfo(activities);
+    } else {
+      const filteredInfo = activities.filter((info) =>
+        info.title.toLocaleLowerCase().includes(lowercaseInput)
+      );
+      setFilteredInfo(filteredInfo);
+    }
+  };
+
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <Text style={styles.title}>Favoritos</Text>
-        <SearchBar setActivites={setActivites} />
+        <SearchBar onSearch={handleSearch} />
         <ActivitiesListContainer
-          data={activities}
+          data={filteredInfo}
           selectActivity={addNewActivityToFavorite}
           navigation={navigation}
         />
@@ -71,7 +86,12 @@ const styles = StyleSheet.create({
     fontFamily: "LexendRegular",
   },
   title:{
-    color: "white",
+ color:"#FFF",
+    fontSize: 28,
+    marginLeft: 20,
+    marginTop: 15,
+    fontStyle: "normal",
+    fontWeight: "300",
   }
 });
 

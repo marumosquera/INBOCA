@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,23 @@ import { FontAwesome } from "@expo/vector-icons"; // Importa FontAwesome
 
 export const ActivityItem = ({ activity, selectActivity, navigation }) => {
   const { id, title, description, image } = activity;
-  const [isFavorite, setIsFavorite] = useState(false); // Estado para controlar si está en favoritos
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+
+  useEffect(() => {
+    // Configura un temporizador para cambiar automáticamente la imagen activa cada 3 segundos
+    const timer = setInterval(() => {
+      const newIndex =
+        activeImageIndex === image.length - 1 ? 0 : activeImageIndex + 1;
+      setActiveImageIndex(newIndex);
+    }, 3000);
+
+    return () => {
+      // Limpia el temporizador cuando el componente se desmonta
+      clearInterval(timer);
+    };
+  }, [activeImageIndex, image]);
 
   const favoriteBtn = () => {
     toggleFavorite()
@@ -29,10 +45,14 @@ export const ActivityItem = ({ activity, selectActivity, navigation }) => {
         }
       >
         <View style={styles.container}>
+
+
+
           <ImageBackground
-            source={image}
+            source={image[activeImageIndex]}
             resizeMode="cover"
             style={styles.imageBackground}
+      
           >
             <TouchableOpacity
               style={styles.favoriteButton}
@@ -49,6 +69,7 @@ export const ActivityItem = ({ activity, selectActivity, navigation }) => {
               <Text style={styles.title}>{title}</Text>
             </View>
           </ImageBackground>
+          
         </View>
       </TouchableOpacity>
     </>

@@ -84,7 +84,9 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#1C1C1C",
-    padding: 20,
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
     height: "100%",
     fontFamily: "LexendRegular",
   },

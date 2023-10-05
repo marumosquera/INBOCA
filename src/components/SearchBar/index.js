@@ -6,7 +6,7 @@ const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    // Lógica de búsqueda automática aquís
+    // Lógica de búsqueda automática
     onSearch(searchTerm);
   }, [searchTerm]);
 

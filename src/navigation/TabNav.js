@@ -22,15 +22,18 @@ const TabNav = () => {
         tabBarStyle: {
           backgroundColor: "black", // Fondo negro
           borderTopColor: "transparent", // Borde superior transparente
+       
         },
         tabBarActiveTintColor: "white", // Color de iconos y texto cuando enfocado
         tabBarInactiveTintColor: "gray", // Color de iconos y texto cuando no enfocado
         tabBarLabelStyle: {
           fontSize: 14,
           fontWeight: "bold",
+          
         },
         tabBarIconStyle: {
           marginBottom: 0, // Elimina el espacio inferior de los iconos
+     
         },
         tabBarShowLabel: true, // Muestra los nombres de las pestañas
       }}
