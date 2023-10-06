@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons, FontAwesome } from "@expo/vector-icons"; // Importa FontAwesome
 import { useDispatch } from "react-redux";
-import { setActivitySelected } from "../../redux/slice/audioSlice";
+import { setActivitySelected, setisPlaying } from "../../redux/slice/audioSlice";
 
 const ActivityDetail = ({ route, navigation }) => {
   const { id, title, description, image } = route.params;
@@ -29,7 +29,8 @@ const ActivityDetail = ({ route, navigation }) => {
   const startAudioGuide = () => {
 
     setShowAudioControls(true); 
-    console.log(activity)
+    console.log("start audio")   
+    dispatch(setisPlaying(true));
     dispatch(setActivitySelected(activity));
   };
 
