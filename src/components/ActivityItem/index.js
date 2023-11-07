@@ -6,16 +6,15 @@ import {
   ImageBackground,
   StyleSheet,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons"; // Importa FontAwesome
+import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 export const ActivityItem = ({ activity, selectActivity, navigation }) => {
   const { id, title, description, image } = activity;
   const [isFavorite, setIsFavorite] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-
   useEffect(() => {
-    // Configura un temporizador para cambiar automáticamente la imagen activa cada 3 segundos
     const timer = setInterval(() => {
       const newIndex =
         activeImageIndex === image.length - 1 ? 0 : activeImageIndex + 1;
@@ -23,14 +22,13 @@ export const ActivityItem = ({ activity, selectActivity, navigation }) => {
     }, 3000);
 
     return () => {
-      // Limpia el temporizador cuando el componente se desmonta
       clearInterval(timer);
     };
   }, [activeImageIndex, image]);
 
   const favoriteBtn = () => {
-    toggleFavorite()
-    selectActivity(activity)
+    toggleFavorite();
+    selectActivity(activity);
   };
 
   const toggleFavorite = () => {
@@ -38,41 +36,46 @@ export const ActivityItem = ({ activity, selectActivity, navigation }) => {
   };
 
   return (
-    <>
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate("ActivityDetail", { title, description, image })
-        }
-      >
-        <View style={styles.container}>
-
-
-
-          <ImageBackground
-            source={image[activeImageIndex]}
-            resizeMode="cover"
-            style={styles.imageBackground}
-      
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("ActivityDetail", { title, description, image })
+      }
+    >
+      <View style={styles.container}>
+        <ImageBackground
+          source={image[activeImageIndex]}
+          resizeMode="cover"
+          style={styles.imageBackground}
+        >
+          <TouchableOpacity
+            style={styles.favoriteButton}
+            onPress={() => {
+              favoriteBtn();
+            }}
           >
-            <TouchableOpacity
-              style={styles.favoriteButton}
-              onPress={()=> {favoriteBtn()}}
-            >
-              {/* Icono de corazón sólido o contorno dependiendo del estado de favoritos */}
+            <View style={styles.favoriteIcon}>
               <FontAwesome
                 name={isFavorite ? "heart" : "heart-o"}
-                size={24}
-                color={isFavorite ? "red" : "white"}
+                size={20}
+                color="white"
               />
-            </TouchableOpacity>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>{title}</Text>
             </View>
-          </ImageBackground>
-          
-        </View>
-      </TouchableOpacity>
-    </>
+          </TouchableOpacity>
+          <View style={styles.infoContainer}>
+          <Text style={styles.title}>{title}</Text>
+          <View style={styles.locationContainer}>
+            <Ionicons name="location-sharp" size={16} color="white" />
+            <Text style={styles.locationText}>
+              Plaza de las Naciones Unidas
+            </Text>
+          </View>
+          <Text style={styles.subLocationText}>Recoleta</Text>
+          </View>
+     
+       
+        </ImageBackground>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     width: 330,
     height: 290,
-    overflow: "hidden", // Oculta el contenido fuera de los bordes
+    overflow: "hidden",
     borderRadius: 20,
     margin: 10,
   },
@@ -89,21 +92,43 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "flex-end",
   },
-  titleContainer: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    flexDirection: "row",
-    justifyContent: "space-between", // Espaciado uniforme entre elementos
-    alignItems: "center",
+  infoContainer: {
     padding: 10,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   title: {
     color: "white",
-    fontSize: 12,
+    fontSize: 16, // Tamaño de fuente más grande
     fontWeight: "bold",
-    textAlign: "center",
+ 
   },
   favoriteButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
     padding: 5,
+    zIndex: 1,
+  },
+  favoriteIcon: {
+    backgroundColor: "black",
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  locationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  locationText: {
+    fontSize: 12, // Tamaño de fuente más pequeño
+    color: "white",
+    fontWeight: "bold",
+  },
+  subLocationText: {
+    fontSize: 12,
+    color: "white",
   },
 });
 

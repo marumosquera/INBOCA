@@ -6,12 +6,12 @@ import { useSelector } from "react-redux";
 
 const AudioNav = () => {
   const isPlaying = useSelector((state) => state.audioSlice.isPlaying);
-console.log(isPlaying)
+
   return (
-    <NavigationContainer>
+    <>
       <TabNav />
       {isPlaying && <AudioPlayer audioUrl="URL_del_audio.mp3" />}
-    </NavigationContainer>
+    </>
   );
 };
 

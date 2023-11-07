@@ -25,7 +25,7 @@ export const activitiesData = [
       description: "Sumérgete en la cultura y el colorido del barrio de La Boca, famoso por su arquitectura única y el famoso Caminito.",
       duration: "2 horas",
       location: "Barrio de La Boca",
-      image: [require('./Img/obelisco.png'),require('./Img/tango.png'),require('./Img/boca.png')],
+      image: [require('./Img/boca.png'),require('./Img/boca.png'),require('./Img/boca.png')],
       audioGuide: "URL_del_audio",
       transcription: "Transcripción del contenido del audio...",
       pointsOfInterest: ["Caminito", "Museo Quinquela Martín", "Estadio La Bombonera"],
